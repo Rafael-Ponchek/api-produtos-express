@@ -1,9 +1,9 @@
 {
   "name": "api-produtos-express",
   "version": "1.0.0",
-  "main": "BACKEND/server.js",
+  "main": "server.js",
   "scripts": {
-      "start": "node BACKEND/server.js"
+      "start": "node server.js"
   },
   "dependencies": {
       "cors": "^2.8.5",
