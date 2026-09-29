@@ -48,7 +48,7 @@ para organizar o objeto
     
     // MUDANÇA PARA A ARQUITETURA CLIENT-SERVER (BACKEND)
     // Endereço da API rodando no servidor Express
-    const API_URL = "https://api-produtos-express-theta.vercel.app/";
+    const API_URL = "https://api-produtos-express-theta.vercel.app/produtos";
     
     // REQUISIÇÃO POST - Enviar dados ao servidor
     document.getElementById("produto-form").addEventListener("submit", async function (e) {
