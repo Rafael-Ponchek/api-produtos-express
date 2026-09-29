@@ -2,6 +2,7 @@ require('dotenv').config();
 
 const express = require('express');
 const cors = require('cors');
+const path = require('path');
 const { Pool } = require('pg');
 
 const app = express();
@@ -14,10 +15,15 @@ const pool = new Pool({
     ssl: process.env.DATABASE_URL ? { rejectUnauthorized: false } : false
 });
 
+// Frontend e backend no mesmo projeto
+app.use(express.static(path.join(__dirname, 'public')));
+
+// Página inicial
 app.get('/', (req, res) => {
-    res.send('API de produtos funcionando!');
+    res.sendFile(path.join(__dirname, 'public', 'index.html'));
 });
 
+// Buscar produtos
 app.get('/produtos', async (req, res) => {
     try {
         const result = await pool.query(
@@ -30,6 +36,7 @@ app.get('/produtos', async (req, res) => {
     }
 });
 
+// Inserir produto
 app.post('/produtos', async (req, res) => {
     const { nome, preco, quantidade } = req.body;
     const p = Number(preco);
@@ -51,6 +58,7 @@ app.post('/produtos', async (req, res) => {
     }
 });
 
+// Deletar um produto
 app.delete('/produtos/:id', async (req, res) => {
     try {
         const result = await pool.query(
@@ -69,6 +77,7 @@ app.delete('/produtos/:id', async (req, res) => {
     }
 });
 
+// Deletar todos os produtos
 app.delete('/produtos', async (req, res) => {
     try {
         await pool.query('DELETE FROM produtos');
