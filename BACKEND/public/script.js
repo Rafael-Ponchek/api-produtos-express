@@ -115,3 +115,46 @@ document.getElementById('limpar-tabela').addEventListener('click', async () => {
 });
 
 renderizarTabela();
+
+const formularioRegistro = document.getElementById('Registro-cliente');
+
+if (formularioRegistro) {
+    formularioRegistro.addEventListener('submit', async (e) => {
+        e.preventDefault();
+
+        const nome = document.getElementById('loginNome').value;
+        const email = document.getElementById('loginEmail').value;
+        const senha = document.getElementById('loginSenha').value;
+        const perfil = document.getElementById('tipo-acesso').value;
+
+        try {
+            const resposta = await fetch('/auth/registro', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify({
+                    nome,
+                    email,
+                    senha,
+                    perfil
+                })
+            });
+
+            const dados = await resposta.json();
+
+            if (!resposta.ok) {
+                throw new Error(dados.erro || 'Erro ao registrar usuário');
+            }
+
+            alert('Usuário registrado com sucesso!');
+
+            formularioRegistro.reset();
+
+            window.location.href = '/login.html';
+
+        } catch (erro) {
+            alert(erro.message);
+        }
+    });
+}
