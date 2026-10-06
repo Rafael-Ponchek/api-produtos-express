@@ -10,20 +10,27 @@
     <div>
         <h1>Registro</h1>
         <form id="Registro-cliente">
+        
             <label>Nome</label>
-            <input type="text" id="loginNome">
+            <input type="text" id="loginNome" required>
+        
             <label>E-mail:</label>
-            <input type="text" id="loginEmail">
+            <input type="email" id="loginEmail" required>
+        
             <label>Senha:</label>
-            <input type="text" id="loginSenha">
-            <select id="tipo-acesso" name="tipo_acesso" required>
-                <option value="" disabled selected>Escolha um prefil</option>
-                <option value="administrador">Administrador</option>
+            <input type="password" id="loginSenha" required>
+        
+            <select id="tipo-acesso" required>
+                <option value="" disabled selected>Escolha um perfil</option>
+                <option value="admin">Administrador</option>
                 <option value="cliente">Cliente</option>
             </select>
-            <button onclick="botaoLoguin">Entrar</button>
-            
+        
+            <button type="submit">Registrar</button>
+        
         </form>
+
+<script src="script.js"></script>
     </div>
     <script src="script.js"></script>
 
